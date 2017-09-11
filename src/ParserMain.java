@@ -7,33 +7,11 @@ import java.util.Scanner;
 public class ParserMain
 {
 
-	HashMap<String,Integer> emotionCount = new HashMap<String,Integer>();
 	public static void main(String[] args)
 	{
-		String testPhrase = "I am happy";
-		setMap();
-		readString(testPhrase);
+		Parser emotionParser = new Parser("emotions.txt","I am happy");
+		emotionParser.printHash();
+		//readString(testPhrase);
 	}
 
-	private static void readString(String phrase)
-	{
-		String[] words = phrase.split(" ");
-
-	}
-	private static void setMap()
-	{
-		String fileName = "emotion.txt";
-		try
-		{
-			Scanner fileScan = new Scanner(new File(fileName));
-			while(fileScan.hasNext())
-			{
-
-			}
-		}
-		catch (Exception FileNotFoundException)
-		{
-			System.out.println("Could not find or open file");
-		}
-	}
 }
