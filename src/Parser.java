@@ -7,7 +7,6 @@ public class Parser
 
 	HashMap<String,Integer> emotionCount; //HashMap that will update as the text is analyzed with the count of emotion words
 	String emotionFile; //txt file containing all emotion words
-	String parseText; //txt to be analyzed
 
 	public Parser()
 	{
@@ -15,12 +14,10 @@ public class Parser
 		emotionFile = "";
 	}
 
-	public Parser(String emotionText, String textToParse)
+	public Parser(String emotionText)
 	{
 		emotionCount = new HashMap<String,Integer>();
 		emotionFile = emotionText;
-		parseText = textToParse;
-
 		makeHash();
 	}
 
@@ -61,10 +58,12 @@ public class Parser
 	/**
 	 * takes the given text to analyze, breaks into arrays, updates the hashMap with value counts of how many emotion words appear
 	 */
-	private void analyzeText()
+	public void analyzeText(String parseText)
 	{
-		String[] words = parseText.split(" "); // array of each word in the given text
+		String[] words = parseText.toUpperCase().split(" "); // array of each word in the given text
+		// everything is uppercase, helps with case matching
 		updateHash(words);
+		giveAnalysis();
 	}
 
 	/**
@@ -73,7 +72,26 @@ public class Parser
 	 */
 	private void updateHash(String[] words)
 	{
-
+		// array of strings from the txt to analyze, increment count per word
+		for (String x: words)
+		{
+			if(emotionCount.containsKey(x))
+			{
+				//update count if it's in the map
+				emotionCount.put(x,emotionCount.get(x) + 1);
+			}
+			else
+			{
+				emotionCount.put("OTHER",emotionCount.get("OTHER") + 1);
+			}
+		}
 	}
 
+	/**
+	 * Gives system output of what program has determined to the be the main emotion of the sentence
+	 */
+	private void giveAnalysis()
+	{
+
+	}
 }

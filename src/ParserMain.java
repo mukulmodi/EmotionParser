@@ -9,7 +9,8 @@ public class ParserMain
 
 	public static void main(String[] args)
 	{
-		Parser emotionParser = new Parser("emotions.txt","I am happy");
+		Parser emotionParser = new Parser("emotions.txt");
+		emotionParser.analyzeText("I am sad");
 		emotionParser.printHash();
 		//readString(testPhrase);
 	}
